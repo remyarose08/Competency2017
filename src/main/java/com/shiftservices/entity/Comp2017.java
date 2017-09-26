@@ -32,6 +32,24 @@ public class Comp2017 implements Serializable {
 	@Column(name = "TIMEPERIOD")
     private String timePeriod;
 	
+	@Column(name = "NO_OF_SHIFTDAYS")
+    private long noOfShiftDays;
+	
+	@Column(name = "NO_OF_OC_WEEKDAYS")
+    private long noOfOnCallWeekdays;
+	
+	@Column(name = "NO_OF_OC_WEEKENDS")
+    private long noOfOnCallWeekends;
+   
+	@Column(name = "GRADE")
+    private String grade;
+   
+	@Column(name = "SKILL")
+    private long skill;
+	
+	@Column(name = "TECHNOLOGY_TYPE")
+    private String technologyType;
+	
     public String getEmployeeId() {
         return employeeId;
     }
@@ -70,6 +88,54 @@ public class Comp2017 implements Serializable {
 
     public void setTimePeriod(String timePeriod) {
         this.timePeriod = timePeriod;
+    }
+
+    public long getNoOfShiftDays() {
+        return noOfShiftDays;
+    }
+
+    public void setNoOfShiftDays(long noOfShiftDays) {
+        this.noOfShiftDays = noOfShiftDays;
+    }
+
+    public long getNoOfOnCallWeekdays() {
+        return noOfOnCallWeekdays;
+    }
+
+    public void setNoOfOnCallWeekdays(long noOfOnCallWeekdays) {
+        this.noOfOnCallWeekdays = noOfOnCallWeekdays;
+    }
+
+    public long getNoOfOnCallWeekends() {
+        return noOfOnCallWeekends;
+    }
+
+    public void setNoOfOnCallWeekends(long noOfOnCallWeekends) {
+        this.noOfOnCallWeekends = noOfOnCallWeekends;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public long getSkill() {
+        return skill;
+    }
+
+    public void setSkill(long skill) {
+        this.skill = skill;
+    }
+
+    public String getTechnologyType() {
+        return technologyType;
+    }
+
+    public void setTechnologyType(String technologyType) {
+        this.technologyType = technologyType;
     }
 	
 }

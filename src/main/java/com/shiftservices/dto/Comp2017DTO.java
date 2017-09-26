@@ -2,12 +2,6 @@ package com.shiftservices.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-
-import com.shiftservices.datatype.Grade;
-import com.shiftservices.datatype.ShiftType;
-import com.shiftservices.datatype.TimePeriod;
-
 public class Comp2017DTO implements Serializable {
 
 	private static final long serialVersionUID = -7801004644878276347L;
@@ -16,18 +10,32 @@ public class Comp2017DTO implements Serializable {
 	private String employeeName;
 	
     private String qdb;
+    private long noOfShiftDays;
+    private long noOfOnCallWeekdays;
+    private long noOfOnCallWeekends;
    
+    private String grade;
     private String shiftType;
-   
     private String timePeriod;
-		
-    public Comp2017DTO(String employeeId, String employeeName, String qdb, String shiftType, String timePeriod) {
+
+    private long skill;
+    private String technologyType;
+    
+    public Comp2017DTO(String employeeId, String employeeName, String qdb, String shiftType, String timePeriod,
+            long noOfShiftDays,long noOfOnCallWeekdays, long noOfOnCallWeekends,String grade, long skill,
+            String technologyType) {
         super();
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.qdb = qdb;
         this.shiftType = shiftType;
         this.timePeriod = timePeriod;
+        this.grade = grade;
+        this.noOfOnCallWeekdays = noOfOnCallWeekdays;
+        this.noOfOnCallWeekends = noOfOnCallWeekends;
+        this.noOfShiftDays = noOfShiftDays;
+        this.skill = skill;
+        this.technologyType = technologyType;
     }
 
 	public String getEmployeeId() {
@@ -54,6 +62,44 @@ public class Comp2017DTO implements Serializable {
         this.qdb = qdb;
     }
 
+    
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    public long getNoOfShiftDays() {
+        return noOfShiftDays;
+    }
+
+    public void setNoOfShiftDays(long noOfShiftDays) {
+        this.noOfShiftDays = noOfShiftDays;
+    }
+
+    public long getNoOfOnCallWeekdays() {
+        return noOfOnCallWeekdays;
+    }
+
+    public void setNoOfOnCallWeekdays(long noOfOnCallWeekdays) {
+        this.noOfOnCallWeekdays = noOfOnCallWeekdays;
+    }
+
+    public long getNoOfOnCallWeekends() {
+        return noOfOnCallWeekends;
+    }
+
+    public void setNoOfOnCallWeekends(long noOfOnCallWeekends) {
+        this.noOfOnCallWeekends = noOfOnCallWeekends;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
     public String getShiftType() {
         return shiftType;
     }
@@ -70,5 +116,22 @@ public class Comp2017DTO implements Serializable {
         this.timePeriod = timePeriod;
     }
 
+    public long getSkill() {
+        return skill;
+    }
+
+    public void setSkill(long skill) {
+        this.skill = skill;
+    }
+
+    public String getTechnologyType() {
+        return technologyType;
+    }
+
+    public void setTechnologyType(String technologyType) {
+        this.technologyType = technologyType;
+    }
+
+  
 	
 }

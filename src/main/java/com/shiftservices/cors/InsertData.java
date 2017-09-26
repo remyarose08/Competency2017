@@ -25,22 +25,42 @@ public class InsertData {
 
     Statement stmt = conn.createStatement();
     
+//    PreparedStatement psInsert = conn
+//            .prepareStatement("insert into SKILL values (?,?,?,?,?,?,?)");
+//    
+//    for (int i = 1; i < 200001; i++) {
+//      
+//
+//            psInsert.setInt(1, i);
+//            psInsert.setString(2, "Tin"+i);
+//            psInsert.setString(3, "NAME"+i);
+//            
+//           psInsert.setString(4, "L2");
+//        
+//           
+//           psInsert.setString(5, "QDB_B");
+//           psInsert.setInt(6, 2);
+//           psInsert.setString(7, "CORE_JAVA");
+//            psInsert.executeUpdate();
+//         
+//        
+//    }
     PreparedStatement psInsert = conn
-            .prepareStatement("insert into SKILL values (?,?,?,?,?,?,?)");
+            .prepareStatement("insert into SHIFTENTRY values (?,?,?,?,?,?,?,?,?)");
     
-    for (int i = 200000; i < 200002; i++) {
+    for (int i = 1; i < 200001; i++) {
       
 
-            psInsert.setInt(1, i);
-            psInsert.setString(2, "Tin3000 :"+i);
-            psInsert.setString(3, "REMYA:"+i);
-            
-           psInsert.setString(4, "L5");
+    psInsert.setInt(1, i);
+    psInsert.setString(2, "Tin"+i);
+    psInsert.setString(3, "NAME"+i);
+    psInsert.setString(4, "L2");
+    psInsert.setInt(5, 5);
+    psInsert.setInt(6, 2);
+    psInsert.setInt(7, 1);
+           psInsert.setString(8, "SHIFT1");
         
-           
-           psInsert.setString(5, "QDB_B");
-           psInsert.setInt(6, 2);
-           psInsert.setString(7, "CORE_JAVA");
+           psInsert.setString(9, "Jan15_Feb14");
             psInsert.executeUpdate();
          
         

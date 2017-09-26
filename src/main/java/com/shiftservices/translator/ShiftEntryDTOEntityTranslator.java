@@ -56,9 +56,12 @@ public final class ShiftEntryDTOEntityTranslator {
 	}
 	
 	
-	   public static Comp2017DTO translateEntity2DTOComp2017(Comp2017 entity) {
-	        Comp2017DTO dto = new Comp2017DTO(entity.getEmployeeId(),
-	                entity.getEmployeeName(), entity.getQdb(),entity.getShiftType(), entity.getTimePeriod());
+	   public static Comp2017DTO translateEntity2DTOComp2017(Comp2017 comp2017) {
+	        Comp2017DTO dto = new Comp2017DTO(comp2017.getEmployeeId(),
+	                                          comp2017.getEmployeeName(), comp2017.getQdb(),comp2017.getShiftType(), comp2017.getTimePeriod(),
+	                                          comp2017.getNoOfShiftDays(), comp2017.getNoOfOnCallWeekdays(), comp2017.getNoOfOnCallWeekends(),comp2017.getGrade(),
+	                                          comp2017.getSkill(),
+	                                          comp2017.getTechnologyType());
 	        return dto;
 	    }
 
