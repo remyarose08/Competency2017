@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+<meta charset="ISO-8859-1">
+<title>AngularJSDemo</title>
+
+  <LINK href="js/styles.css" rel="stylesheet" type="text/css">
+
+<!-- angular js-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<!-- ngcsv -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.8/angular-sanitize.js"></script>
+ 
+<script src="angularDemo.js"></script>
+<script>
+ angular.module('app', ['ngSanitize', 'ngCsv']).controller('downloader', function($scope, $http) {
+                var testData;
+            $http.get('http://localhost:8080/shiftservices/rest/json/shiftdata/fetchBulkData').
+                    then(function(response) {
+                        testData = response.data;
+             $scope.data = testData;
+                    });
+            $scope.data = testData;
+            });  
+
+</script>
+</head>
+  <body data-ng-app="app" data-ng-controller="downloader">
+
+<h1> Hello , click the below button to export your data to CSV</h1>
+<button class="btn  btn-xs btn-white" data-ng-csv="data" data-filename="mycsvfile.csv">Download Report</button>
+</body>
+</html>

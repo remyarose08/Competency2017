@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="myapp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Calculation</title>
+
+<script type="text/javascript" src="js/angular.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style>
+table, th, td {
+    border-style: solid;
+    border-width: medium;
+}
+th, td {
+    padding: 5px;
+    text-align: left;    
+}
+   
+</style>
+</head>
+
+ <body ng-controller="shiftApp">
+        <h1 align="center" ><b>Profile Management System</b></h1>
+<form name="form">
+<div class="page-header">
+            <h1>
+                My Skill Set 
+            </h1>
+        </div>
+        <div class="panel">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Technology Type</th>
+                        <th>Skill</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="sft in  completeShiftDetails">
+                        <td>{{sft.employeeId}}</td>
+                        <td>{{sft.employeeName}}</td>
+             <td><a ng-click="" class="btn btn-small btn-primary">edit</a></td>
+            <td><a ng-click="" class="btn btn-small btn-danger">delete</a></td>
+           <!--   <td><a ng-click="deleteUser(user.id)" class="btn btn-small btn-danger">delete</a></td> -->
+                       <!--   <td>{{sft.timePeriod}}</td>
+                        <td>{{sft.noOfShiftDays}}</td>
+                        <td>&#8377;{{sft.totalShiftAllowanceAmount}}.00</td>
+                        <td>{{sft.noOfOnCallWeekdays}}</td>
+                        <td>{{sft.noOfOnCallWeekends}}</td>
+                        <td>&#8377;{{sft.totalOnCallAllowanceAmount}}</td>
+                        <td>&#8377;{{sft.totalAllowance}}.00</td> -->
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+             <a ng-click="addSkill()" class="btn btn-small btn-success">Add New Skill</a>
+        </div>
+        
+        </form>
+
+<script type="text/javascript">
+var myapp = angular.module('myapp', []);
+myapp.controller('shiftApp', function ($scope, $http){
+ 	
+	$http.get('http://localhost:8080/shiftservices/rest/json/shiftdata/fetchShiftDataForAll').success(function(response){
+		$scope.completeShiftDetails=response;
+	});
+	
+	$scope.addSkill = function(){
+		  window.location = "http://localhost:8080/shiftservices/submissionForm.html";
+	}
+	
+});
+
+</script>
+</body>
+</html>

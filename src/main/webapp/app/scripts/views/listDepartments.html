@@ -1,0 +1,38 @@
+<div class="departments view">
+	<div class="container">
+		<header>
+			<h3>Departments</h3>
+		</header>
+		<br /> <br />
+		<div class="row">
+			<div class="span3">
+				Search Department by Id: <br /> <input data-ng-model="code"
+					type="text" />
+			</div>
+		</div>
+		</br>
+		<div class="row">
+			<div class="span12">
+				<table
+					class="table table-hover table-striped table-condensed table-bordered ordersTable">
+					<thead>
+						<tr>
+							<th>Department Code</th>
+							<th>Department Name</th>
+							<th>Links</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr
+							data-ng-repeat="dept in departments | orderBy:'code'| filter:code">
+							<td>{{ dept.code }}</td>
+							<td>{{ dept.name }}</td>
+							<td><a href="#/departments/{{dept.id}}"
+								class="cardBody btn-link">View Details</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

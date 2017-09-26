@@ -1,0 +1,45 @@
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<div class="employeeDetails view">
+	<div class="container">
+		<header>
+			<h3>Employee Details</h3>
+		</header>
+		<br /> <br />
+		<div class="row">
+			<div class="span12">
+				<table
+					class="table table-hover table-striped table-condensed table-bordered ordersTable">
+					<thead>
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Employee ID</th>
+							<th>Department</th>
+						<!--  	<th>Email Id</th>
+							<th>Address</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						<!--  <tr data-ng-hide="employee" class="error">
+							<td colspan="4">
+								<div class="text-center">
+									<strong>No Employee found</strong>
+								</div>
+							</td>
+						</tr>-->
+						<tr>
+							<td>{{ employee.firstName }}</td>
+							<td>{{ employee.lastName }}</td>
+							<td>{{ employee.employeeId }}</td>
+							<td>{{ employee.department}}</td>
+							<!--  <td>{{ employee.email}}</td>
+							<td>{{ employee.address + ', '+ employee.city}}</td>-->
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+	</div>
+</div>

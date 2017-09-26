@@ -1,0 +1,36 @@
+<div class="departmentDetails view">
+	<div class="container">
+		<header>
+			<h3>Department Details</h3>
+		</header>
+		<br /> <br />
+		<div class="row">
+			<div class="span12">
+				<table
+					class="table table-hover table-striped table-condensed table-bordered ordersTable">
+					<thead>
+						<tr>
+							<th>Department ID</th>
+							<th>Department Name</th>
+							<th>Department Manager</th>
+							<th>Location</th>
+							<th>Total no. of employees</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						<tr>
+							<td>{{ dept.code }}</td>
+							<td>{{ dept.name }}</td>
+							<td>{{ dept.manager }}</td>
+							<td>{{ dept.location}}</td>
+							<td>{{ dept.empno}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+	</div>
+</div>

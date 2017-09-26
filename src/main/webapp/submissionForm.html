@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="myapp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Shift Allowance Submission Form</title>
+
+<script type="text/javascript" src="js/angular.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style>
+table,th,td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th,td {
+	padding: 5px;
+	text-align: left;
+}
+</style>
+
+
+</head>
+<body ng-controller="shiftAllowanceController" ng-submit="processForm()">
+	 <h1 align="center" ><b>Profile Management System</b></h1>
+	<form name="form">
+	<div class="page-header">
+            <h1>
+                Add or Update Skill 
+            </h1>
+        </div>
+		<table align="center" style="width: 100%">
+			<tr>
+				<td><label><b>Employee ID:</b></label></td>
+				<td>A028515</td>
+			</tr>
+			<tr>
+				<td><label><b>Employee Name:</b></label></td>
+				<td>Jayanth Chornur Srinivasa</td>
+			</tr>
+
+			<tr>
+				<td><label for="listGrade"><b>Grade:</b></label></td>
+				<td>L1</td>
+			</tr>
+
+			<tr>
+				<td><label for="qdbRole"><b>QDB:</b></label></td>
+				<td>Application Developer - B</td>
+			</tr>
+
+			<tr>
+				<td><label for="technologyType"><b>Technology Type:</b></label></td>
+				<td><select ng-model="technologyType">
+						<option ng-repeat="tt in  listTechnologyType" value="{{tt}}">{{tt}}</option>
+				</select></td>
+			</tr>
+			
+			<tr>
+				<td><label for="skill"><b>Add Skill</b></label></td>
+				<td><textarea ng-model="skill"></textarea></td>
+			</tr>
+			
+		</table>
+		<br>
+		<div align="center">
+			<button type="submit" ng-click="submit()" class="btn btn-success">
+				<span class="glyphicon glyphicon-flash"></span> Add
+			</button>
+		</div>
+	</form>
+
+	<script type="text/javascript">
+var myapp = angular.module('myapp', []);
+myapp.controller('shiftAllowanceController', function ($scope, $http){ 
+	/* $http.get('http://localhost:8080/shiftservices/rest/json/shiftdata/fetchAllShifts').success(function(response){
+		$scope.listShiftType=response;
+		 console.log("Hello " + $scope.listShiftType + "listShiftType");
+	}); 	
+	$http.get('http://localhost:8080/shiftservices/rest/json/shiftdata/fetchAllGrades').success(function(response){
+		$scope.listGrade=response;
+		 console.log("Hello " + $scope.listGrade + "listGrade");
+	});	
+ 	$http.get('http://localhost:8080/shiftservices/rest/json/shiftdata/fetchAllTimePeriods').success(function(response){
+		$scope.listTimePeriod=response;	
+	});	 */
+	
+	$http.get('http://localhost:8080/shiftservices/rest/json/shiftdata/fetchAllTechnologyType').success(function(response){
+		$scope.listTechnologyType=response;	
+	});	
+	 
+ 	$scope.processForm = function() {  
+        $http({
+                   method  : 'POST',
+                   url     : 'http://localhost:8080/shiftservices/rest/json/shiftdata/addSkill',//'http://localhost:8080/shiftservices/rest/json/shiftdata/submitData',
+                   data : $.param({
+                         "employeeId" : $scope.employeeId,
+                         "employeeName" : $scope.employeeName,
+                         "grade" : $scope.grade, 
+                         "qdb" : $scope.qdb, 
+                         "technologyType" : $scope.technologyType,
+                         "skill" : $scope.skill/* ,
+                         "noOfOnCallWeekdays" : $scope.noOfOnCallWeekdays,
+                         "noOfOnCallWeekends" : $scope.noOfOnCallWeekends */
+                        }),
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'text/plain'}
+                      })
+                        .success(function(data) {
+                      });
+        
+    	alert('Skill details submitted successfully'); 
+     
+       
+        $scope.technologyType = "";
+        $scope.skill = "";
+        };
+
+});
+
+</script>
+</body>
+</html>

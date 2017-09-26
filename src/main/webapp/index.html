@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+<meta charset="ISO-8859-1">
+<title>AngularJSDemo</title>
+
+  <link href="content/bootstrap.min.css" rel="stylesheet" />
+<link href="content/bootstrap-responsive.min.css" rel="stylesheet" />
+<link href="content/employeeManagementStyles.css" rel="stylesheet" />
+
+<!-- angular js-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<!-- ngcsv -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.8/angular-sanitize.js"></script>
+ 
+<script src="angularDemo.js"></script>
+<script>
+ angular.module('app', ['ngSanitize', 'ngCsv']).controller('downloader', function($scope, $http) {
+                var testData;
+            $http.get('http://localhost:8080/shiftservices/rest/json/shiftdata/fetchBulkData').
+                    then(function(response) {
+                        testData = response.data;
+             $scope.data = testData;
+                    });
+            $scope.data = testData;
+            });  
+
+</script>
+</head>
+  <body data-ng-app="app" data-ng-controller="downloader">
+<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand " href=""> <img
+					src="content/images/report.jpg" alt="logo"> <font size="8"><b>Reporting Tool</b></font>
+				</a>
+				</div>
+				</div>
+				</div>
+				<br>
+				<br>
+					<br>
+					<br>
+					<br>
+					<br>
+							<br>	
+		 <div class="container">
+        <header>
+            <h3>Click the below button to export your data to CSV</h3>
+        </header>		
+
+<button class="btn  btn-xs btn-white" data-ng-csv="data" data-filename="mycsvfile.csv">Download Report</button>
+</body>
+</html>

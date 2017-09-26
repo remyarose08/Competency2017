@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="myapp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Calculation</title>
+
+<script type="text/javascript" src="js/angular.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style>
+table, th, td {
+    border-style: solid;
+    border-width: medium;
+}
+th, td {
+    padding: 5px;
+    text-align: left;    
+}
+   
+</style>
+
+            
+</head>
+    <body ng-controller="Calculator" ng-submit="getTotal()">
+        <h3 align="center" ><b>Calculate Allowance</b></h3>
+<form name="form">
+    <table align="center" style="width:30%">
+	<tr>
+   <td><label for="listShiftType"><b>Shift Type:</b></label></td>
+    <td><select ng-model="shiftType">
+     <option ng-repeat="st in  listShiftType" value="{{st.name}}">{{st.name}}</option> 
+     </select></td>
+    </tr>
+    <tr>
+    <td><label><b>Total Shift Days:</b></label></td>
+        <td><input type="number"  min="0" ng-model="noOfShiftDays" name="shift_days" maxlength="3" /></td>
+        </tr>
+    <tr>
+	<tr>
+    <td><label><b>OnCall  WeekDays:</b></label></td>
+        <td><input type="number"  min="0" ng-model="noOfWDays" name="w_days"  maxlength="3" /></td>
+        </tr>
+    <tr>
+	<tr>
+    <td><label><b>Oncall WeekEnd:</b></label></td>
+        <td><input type="number"  min="0" ng-model="noOfEDays" name="e_days"  maxlength="3" /></td>
+        </tr>
+    <tr>
+    <th>
+	<div>
+       <button class="btn btn-info" ng-click="showMe();">Calculate</button>
+       <button class="btn btn-info" ng-click="clickReset();">Reset</button>
+    </div></th>
+    <th><div ng-show="show">
+       <input type="box"  style="width: 173px;" value="{{ getTotal() }}Rs" />
+    </div></th>
+  </tr>
+</table>
+</form>
+
+<script type="text/javascript">
+var myapp = angular.module('myapp', []);
+myapp.controller('Calculator', function ($scope, $http){
+	$http.get('http://localhost:8080/shiftservices/rest/json/shiftdata/fetchAllShifts').success(function(response){
+		$scope.listShiftType=response;
+		$scope.getTotal = function()
+		{
+		var shifttype=$scope.shiftType;
+		var shiftdays=$scope.noOfShiftDays;
+		var wdays=$scope.noOfWDays;
+		if (!wdays)
+		wdays=0;
+		var edays=$scope.noOfEDays;
+		if (!edays)
+		edays=0;
+		var i=0,j=0,k=0;
+		if( angular.equals($scope.shiftType,"SHIFT1"))
+		i=0;
+		else if( angular.equals($scope.shiftType,"SHIFT2") )
+		i=1;
+		else if( angular.equals($scope.shiftType,"SHIFT3") )
+		i=2;
+		else
+		i=3;
+		if( wdays > 0)
+		j=4;
+		if( edays > 0)
+			k=5;
+		var total = 0;
+        var st = $scope.listShiftType[i];
+	    var st1 = $scope.listShiftType[j];
+	    var st2 = $scope.listShiftType[k];
+        total = (total) + ((st.amount * shiftdays)) + ((wdays * st1.amount)) + ((edays * st2.amount));
+		return total;
+	
+       }
+     $scope.showMe = function()
+	 {
+	    $scope.show=true;
+     }
+	 $scope.clickReset = function() {
+	  $scope.shiftType = "";
+      $scope.noOfShiftDays = "";
+      $scope.noOfWDays = "";
+      $scope.noOfEDays = "";
+	  $scope.show=false;
+    };
+});
+});
+
+</script>
+</body>
+</html>

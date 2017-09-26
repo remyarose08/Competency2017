@@ -1,0 +1,59 @@
+<body>
+<html>
+
+<div class="employees view">
+    <div class="container">
+        <header>
+            <h3>Employees</h3>
+        </header>
+        <div class="row">
+            <div class="span3">
+                First Name:
+                <br />
+                <input data-ng-model="newEmployee.firstName" type="text" placeholder="First Name" id="firstName">
+            </div>
+            <div class="span3">
+                Last Name:
+                <br />
+                <input data-ng-model="newEmployee.lastName" type="text" placeholder="Last Name" id="lastName">
+            </div>
+              <div class="span3">
+                 Employee ID:
+                <br />
+                <input data-ng-model="newEmployee.empId" type="text" placeholder="Employee ID" id="empId">
+            </div>
+            <div class="span6">
+                Department:
+                <br />
+                <input data-ng-model="newEmployee.dept" type="text" placeholder="Department" id="dept">
+                <button id="submitEmployee" class="btn btn-primary" type="button" data-ng-disabled="!newEmployee.firstName || !newEmployee.lastName || !newEmployee.empId || !newEmployee.dept" 
+                 data-ng-click="insertEmployee()">Add Employee</button>
+            </div>
+            <br/><br/>
+            <div class="row">
+             <div class="span3">
+             Search Employee by Id:
+                <br />
+                <input data-ng-model="empId" type="text" placeholder="Employee ID" id="empId" />
+               
+             </div>
+                
+            </div>
+        </div>
+        <br /><br />
+        <div>
+            <div class="row cardContainer" data-ng-init="">
+                <div class="span3 card" data-ng-repeat="employee in employees| filter:empId | orderBy:'lastName'">
+                    <button class="btn close cardClose" data-ng-click="deleteEmployee(employee.employeeId)">&times;</button>
+                    <div class="cardHeader">{{employee.firstName + ' ' + employee.lastName}}</div>
+                    <div class="cardBody">{{employee.employeeId + ', ' + employee.department }}</div>
+                   <!-- <button id="details" class="btn btn-primary" type="button"  data-ng-click="getEmployeeDetails(employee.employeeId)">Details</button>-->
+                      <a href="#/employees/{{employee.employeeId}}" class="cardBody btn-link" data-ng-click="getEmployeeDetails(employee.employeeId)">View Details</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+</body>
+</html>
